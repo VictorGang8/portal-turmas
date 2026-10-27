@@ -1,0 +1,344 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Portal de Turmas da UNICEPLAC — Engenharia de Software, Programação para Web.">
+    <meta name="theme-color" content="#007441">
+    <title>Portal de Turmas — UNICEPLAC</title>
+
+    <!-- Bootstrap 5 + Bootstrap Icons via CDN -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css" rel="stylesheet">
+
+    <style>
+        :root {
+            --uni-verde:  #007441;
+            --uni-verde-escuro: #005a30;
+            --uni-laranja: #FD7708;
+            --uni-escura: #1A1A2E;
+            --bs-primary: var(--uni-verde);
+            --bs-primary-rgb: 0, 116, 65;
+        }
+
+        html { scroll-behavior: smooth; }
+        section[id], footer[id] { scroll-margin-top: 72px; }   /* compensa a navbar fixa */
+        @media (prefers-reduced-motion: reduce) { html { scroll-behavior: auto; } }
+
+        .bg-uniceplac   { background-color: var(--uni-verde) !important; }
+        .text-laranja   { color: var(--uni-laranja) !important; }
+
+        .btn-laranja {
+            background-color: var(--uni-laranja);
+            border-color: var(--uni-laranja);
+            color: #fff;
+            font-weight: 700;
+        }
+        .btn-laranja:hover, .btn-laranja:focus-visible {
+            background-color: #d96200;
+            border-color: #d96200;
+            color: #fff;
+        }
+
+        /* Navbar */
+        .navbar .nav-link.active { color: var(--uni-laranja) !important; font-weight: 600; }
+
+        /* Hero */
+        .hero {
+            background: linear-gradient(135deg, var(--uni-escura) 0%, var(--uni-verde-escuro) 100%);
+            color: #fff;
+        }
+
+        /* Cards de turma */
+        .card-turma { transition: transform .2s, box-shadow .2s; }
+        .card-turma:hover { transform: translateY(-4px); box-shadow: 0 .75rem 1.5rem rgba(0,116,65,.18) !important; }
+
+        /* Footer */
+        .site-footer {
+            background: var(--uni-escura);
+            color: #adb5bd;
+            border-top: 4px solid var(--uni-laranja);
+        }
+        .site-footer h2 { font-size: 1rem; color: #fff; text-transform: uppercase; letter-spacing: .05em; }
+        .site-footer a { color: #adb5bd; text-decoration: none; }
+        .site-footer a:hover, .site-footer a:focus-visible { color: var(--uni-laranja); }
+        .site-footer .bi { color: var(--uni-laranja); }
+        .footer-bottom { background: rgba(0,0,0,.25); font-size: .875rem; }
+
+        /* Botão voltar ao topo */
+        #btnTopo {
+            position: fixed; bottom: 1rem; left: 1rem; z-index: 1030;
+            display: none; width: 44px; height: 44px; padding: 0;
+        }
+    </style>
+</head>
+<body>
+
+<!-- Acessibilidade: pular direto para o conteúdo -->
+<a class="visually-hidden-focusable position-absolute p-2 bg-white" href="#conteudo">Ir para o conteúdo</a>
+
+<!-- ═════════ NAVBAR ═════════ -->
+<nav class="navbar navbar-expand-lg navbar-dark bg-uniceplac sticky-top shadow-sm" aria-label="Navegação principal">
+    <div class="container">
+        <a class="navbar-brand fw-bold" href="#topo">
+            <i class="bi bi-mortarboard-fill text-laranja" aria-hidden="true"></i> Portal UNICEPLAC
+        </a>
+
+        <button class="navbar-toggler border-0" type="button"
+                data-bs-toggle="collapse" data-bs-target="#navMenu"
+                aria-controls="navMenu" aria-expanded="false" aria-label="Abrir menu">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+
+        <div class="collapse navbar-collapse" id="navMenu">
+            <ul class="navbar-nav ms-auto">
+                <li class="nav-item"><a class="nav-link" href="#turmas">Turmas</a></li>
+                <li class="nav-item"><a class="nav-link" href="#cadastrar">Cadastrar</a></li>
+                <li class="nav-item"><a class="nav-link" href="turmas.jsp">Lista (JSP)</a></li>
+                <li class="nav-item"><a class="nav-link" href="#contato">Contato</a></li>
+            </ul>
+        </div>
+    </div>
+</nav>
+
+<main id="conteudo">
+
+    <!-- ═════════ HERO ═════════ -->
+    <header class="hero py-5" id="topo">
+        <div class="container py-3">
+            <span class="badge bg-warning text-dark mb-3">2026/2 · 4º Período</span>
+            <h1 class="display-5 fw-bold">Portal de <span class="text-laranja">Turmas</span></h1>
+            <p class="lead mb-4">Engenharia de Software · Programação para Web</p>
+            <a href="#turmas" class="btn btn-laranja btn-lg me-2">Ver turmas</a>
+            <a href="#cadastrar" class="btn btn-outline-light btn-lg">Cadastrar aluno</a>
+        </div>
+    </header>
+
+    <!-- ═════════ TURMAS ═════════ -->
+    <section id="turmas" class="py-5">
+        <div class="container">
+            <h2 class="mb-4 fw-bold">Turmas Disponíveis</h2>
+
+            <div class="row g-4">
+
+                <div class="col-md-6 col-lg-4">
+                    <div class="card card-turma h-100 border-0 shadow-sm">
+                        <div class="card-header bg-uniceplac text-white fw-bold">
+                            <i class="bi bi-globe2" aria-hidden="true"></i> Programação para Web
+                        </div>
+                        <div class="card-body">
+                            <p class="card-text">
+                                <span class="badge bg-secondary">ENSOF4AN1</span> · 60h · Turma A
+                            </p>
+                            <p class="text-muted small mb-0"><i class="bi bi-person-fill" aria-hidden="true"></i> Prof. Reinaldo Vieira</p>
+                        </div>
+                        <div class="card-footer bg-white border-0 pb-3">
+                            <a href="#" class="btn btn-sm bg-uniceplac text-white">Ver detalhes</a>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="col-md-6 col-lg-4">
+                    <div class="card card-turma h-100 border-0 shadow-sm">
+                        <div class="card-header bg-uniceplac text-white fw-bold">
+                            <i class="bi bi-database-fill" aria-hidden="true"></i> Banco de Dados
+                        </div>
+                        <div class="card-body">
+                            <p class="card-text">
+                                <span class="badge bg-secondary">ENSOF4BD1</span> · 80h · Turma A
+                            </p>
+                            <p class="text-muted small mb-0"><i class="bi bi-person-fill" aria-hidden="true"></i> Prof. Carlos Souza</p>
+                        </div>
+                        <div class="card-footer bg-white border-0 pb-3">
+                            <a href="#" class="btn btn-sm bg-uniceplac text-white">Ver detalhes</a>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="col-md-6 col-lg-4">
+                    <div class="card card-turma h-100 border-0 shadow-sm">
+                        <div class="card-header bg-uniceplac text-white fw-bold">
+                            <i class="bi bi-diagram-3-fill" aria-hidden="true"></i> Engenharia de Software
+                        </div>
+                        <div class="card-body">
+                            <p class="card-text">
+                                <span class="badge bg-secondary">ENSOF4ES1</span> · 80h · Turma A
+                            </p>
+                            <p class="text-muted small mb-0"><i class="bi bi-person-fill" aria-hidden="true"></i> Prof. Ana Lima</p>
+                        </div>
+                        <div class="card-footer bg-white border-0 pb-3">
+                            <a href="#" class="btn btn-sm bg-uniceplac text-white">Ver detalhes</a>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </section>
+
+    <!-- ═════════ CADASTRO ═════════ -->
+    <section id="cadastrar" class="py-5 bg-light">
+        <div class="container">
+            <div class="row justify-content-center">
+                <div class="col-lg-6">
+                    <div class="card shadow border-0">
+                        <div class="card-header bg-uniceplac text-white">
+                            <h2 class="h4 mb-0"><i class="bi bi-pencil-square" aria-hidden="true"></i> Cadastrar Aluno</h2>
+                        </div>
+                        <div class="card-body p-4">
+                            <form id="formCadastro" action="processar.jsp" method="post"
+                                  class="needs-validation" novalidate>
+
+                                <div class="mb-3">
+                                    <label class="form-label fw-semibold" for="nome">Nome Completo</label>
+                                    <input type="text" class="form-control" id="nome" name="nome"
+                                           placeholder="Ex: Maria da Silva"
+                                           autocomplete="name" minlength="3" required>
+                                    <div class="invalid-feedback">Informe o nome completo (mín. 3 caracteres).</div>
+                                </div>
+
+                                <div class="mb-3">
+                                    <label class="form-label fw-semibold" for="email">E-mail</label>
+                                    <input type="email" class="form-control" id="email" name="email"
+                                           placeholder="aluno@uniceplac.edu.br"
+                                           autocomplete="email" required>
+                                    <div class="invalid-feedback">Informe um e-mail válido.</div>
+                                </div>
+
+                                <div class="mb-4">
+                                    <label class="form-label fw-semibold" for="turma">Turma</label>
+                                    <select class="form-select" id="turma" name="turma" required>
+                                        <option value="">Selecione...</option>
+                                        <option value="web">Programação para Web</option>
+                                        <option value="bd">Banco de Dados</option>
+                                        <option value="es">Engenharia de Software</option>
+                                    </select>
+                                    <div class="invalid-feedback">Escolha uma turma.</div>
+                                </div>
+
+                                <button type="submit" class="btn btn-laranja btn-lg w-100">
+                                    <i class="bi bi-person-plus-fill" aria-hidden="true"></i> Cadastrar Aluno
+                                </button>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+</main>
+
+<!-- ═════════ FOOTER ═════════ -->
+<footer id="contato" class="site-footer">
+    <div class="container py-5">
+        <div class="row g-4">
+
+            <div class="col-lg-4">
+                <h2 class="mb-3"><i class="bi bi-mortarboard-fill" aria-hidden="true"></i> Portal UNICEPLAC</h2>
+                <p class="small">Projeto da disciplina de Programação para Web, do curso de Engenharia de Software (4º período), integrando HTML, CSS, Bootstrap e JSP.</p>
+                <a href="https://www.uniceplac.edu.br" target="_blank" rel="noopener noreferrer"
+                   class="btn btn-sm btn-outline-light">
+                    Site institucional <i class="bi bi-box-arrow-up-right" aria-hidden="true"></i>
+                </a>
+            </div>
+
+            <div class="col-6 col-lg-3 offset-lg-1">
+                <h2 class="mb-3">Navegação</h2>
+                <ul class="list-unstyled small mb-0">
+                    <li class="mb-2"><a href="#turmas">Turmas</a></li>
+                    <li class="mb-2"><a href="#cadastrar">Cadastrar aluno</a></li>
+                    <li class="mb-2"><a href="turmas.jsp">Lista de turmas (JSP)</a></li>
+                    <li><a href="index.html">Versão HTML/CSS puro</a></li>
+                </ul>
+            </div>
+
+            <div class="col-6 col-lg-4">
+                <h2 class="mb-3">Contato</h2>
+                <address class="small mb-0">
+                    <p class="mb-2"><i class="bi bi-person-fill me-2" aria-hidden="true"></i>Prof. Reinaldo Vieira</p>
+                    <p class="mb-2"><i class="bi bi-envelope-fill me-2" aria-hidden="true"></i>
+                        <a href="mailto:reinaldo@uniceplac.edu.br">reinaldo@uniceplac.edu.br</a></p>
+                    <p class="mb-2"><i class="bi bi-clock-fill me-2" aria-hidden="true"></i>Seg/Qua · 19h–22h</p>
+                    <p class="mb-0"><i class="bi bi-geo-alt-fill me-2" aria-hidden="true"></i>Brasília — DF</p>
+                </address>
+            </div>
+
+        </div>
+    </div>
+
+    <div class="footer-bottom py-3">
+        <div class="container d-flex flex-column flex-md-row justify-content-between align-items-center gap-1">
+            <span>© <span id="anoAtual">2026</span> UNICEPLAC — Todos os direitos reservados</span>
+            <span>Desenvolvido na disciplina de Programação para Web</span>
+        </div>
+    </div>
+</footer>
+
+<!-- Voltar ao topo -->
+<button id="btnTopo" type="button" class="btn btn-laranja rounded-circle shadow" aria-label="Voltar ao topo">
+    <i class="bi bi-arrow-up" aria-hidden="true"></i>
+</button>
+
+<!-- Toast de confirmação -->
+<div class="toast-container position-fixed bottom-0 end-0 p-3">
+    <div id="toastCadastro" class="toast align-items-center text-bg-success border-0"
+         role="status" aria-live="polite" aria-atomic="true">
+        <div class="d-flex">
+            <div class="toast-body"><i class="bi bi-check-circle-fill me-1" aria-hidden="true"></i> Aluno cadastrado com sucesso!</div>
+            <button type="button" class="btn-close btn-close-white me-2 m-auto"
+                    data-bs-dismiss="toast" aria-label="Fechar"></button>
+        </div>
+    </div>
+</div>
+
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+<script>
+    // true  = só mostra o toast (útil abrindo o HTML direto no navegador)
+    // false = envia de verdade para processar.jsp (requer Tomcat)
+    const MODO_DEMO = true;
+
+    // Ano dinâmico no rodapé
+    document.getElementById('anoAtual').textContent = new Date().getFullYear();
+
+    // Validação + toast
+    const form  = document.getElementById('formCadastro');
+    const toast = new bootstrap.Toast(document.getElementById('toastCadastro'), { delay: 3000 });
+
+    form.addEventListener('submit', function (e) {
+        if (!form.checkValidity()) {
+            e.preventDefault();
+            e.stopPropagation();
+            form.classList.add('was-validated');
+            form.querySelector(':invalid').focus();
+            return;
+        }
+        if (MODO_DEMO) {
+            e.preventDefault();
+            toast.show();
+            form.reset();
+            form.classList.remove('was-validated');
+        }
+    });
+
+    // Scrollspy: marca o link ativo conforme a seção visível
+    const links = document.querySelectorAll('.navbar .nav-link[href^="#"]');
+    const observer = new IntersectionObserver(function (entries) {
+        entries.forEach(function (en) {
+            if (en.isIntersecting) {
+                links.forEach(function (l) {
+                    l.classList.toggle('active', l.getAttribute('href') === '#' + en.target.id);
+                });
+            }
+        });
+    }, { rootMargin: '-40% 0px -55% 0px' });
+    document.querySelectorAll('#turmas, #cadastrar, #contato').forEach(function (s) { observer.observe(s); });
+
+    // Voltar ao topo
+    const btnTopo = document.getElementById('btnTopo');
+    window.addEventListener('scroll', function () {
+        btnTopo.style.display = window.scrollY > 400 ? 'block' : 'none';
+    });
+    btnTopo.addEventListener('click', function () { window.scrollTo({ top: 0, behavior: 'smooth' }); });
+</script>
+</body>
+</html>

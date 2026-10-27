@@ -1,0 +1,140 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Portal de Turmas da UNICEPLAC — Engenharia de Software, Programação para Web.">
+    <meta name="theme-color" content="#007441">
+    <title>Portal de Turmas — UNICEPLAC</title>
+    <link rel="stylesheet" href="estilo.css">
+</head>
+<body>
+
+    <!-- Acessibilidade: pular direto para o conteúdo -->
+    <a class="skip-link" href="#conteudo">Ir para o conteúdo</a>
+
+    <header id="topo">
+        <div class="header-texto">
+            <span class="selo">2026/2 · 4º Período</span>
+            <h1>UNICEPLAC — Portal de Turmas</h1>
+            <p>Engenharia de Software · Programação para Web</p>
+        </div>
+    </header>
+
+    <nav aria-label="Navegação principal">
+        <ul>
+            <li><a href="#turmas">Turmas</a></li>
+            <li><a href="#cadastrar">Cadastrar Aluno</a></li>
+            <li><a href="turmas.jsp">Lista (JSP)</a></li>
+            <li><a href="#contato">Contato</a></li>
+        </ul>
+    </nav>
+
+    <main id="conteudo">
+
+        <section id="turmas">
+            <h2>Turmas Disponíveis</h2>
+
+            <!-- Article = unidade de conteúdo independente -->
+            <article>
+                <h3>Programação para Web</h3>
+                <p><span class="codigo">ENSOF4AN1</span> 4º Período · 60h</p>
+                <p>Prof. Reinaldo Vieira · Turma A</p>
+                <a href="#">Ver detalhes</a>
+            </article>
+
+            <article>
+                <h3>Banco de Dados</h3>
+                <p><span class="codigo">ENSOF4BD1</span> 4º Período · 80h</p>
+                <p>Prof. Carlos Souza · Turma A</p>
+                <a href="#">Ver detalhes</a>
+            </article>
+
+            <article>
+                <h3>Engenharia de Software</h3>
+                <p><span class="codigo">ENSOF4ES1</span> 4º Período · 80h</p>
+                <p>Prof. Ana Lima · Turma A</p>
+                <a href="#">Ver detalhes</a>
+            </article>
+        </section>
+
+        <section id="cadastrar">
+            <h2>Cadastrar Aluno</h2>
+
+            <form action="processar.jsp" method="post">
+                <fieldset>
+                    <legend>Dados Pessoais</legend>
+
+                    <label for="nome">Nome Completo:</label>
+                    <input type="text"
+                           id="nome"
+                           name="nome"
+                           placeholder="Ex: Maria da Silva"
+                           autocomplete="name"
+                           minlength="3"
+                           required>
+
+                    <label for="email">E-mail:</label>
+                    <input type="email"
+                           id="email"
+                           name="email"
+                           placeholder="Ex: aluno@uniceplac.edu.br"
+                           autocomplete="email"
+                           required>
+
+                    <label for="turma">Turma:</label>
+                    <select id="turma" name="turma" required>
+                        <option value="">Selecione...</option>
+                        <option value="web">Programação para Web</option>
+                        <option value="bd">Banco de Dados</option>
+                        <option value="es">Engenharia de Software</option>
+                    </select>
+
+                    <button type="submit">Cadastrar</button>
+                </fieldset>
+            </form>
+        </section>
+
+        <aside>
+            <h3>Professor Responsável</h3>
+            <p><strong>Nome:</strong> Prof. Reinaldo Vieira</p>
+            <p><strong>E-mail:</strong> <a href="mailto:reinaldo@uniceplac.edu.br">reinaldo@uniceplac.edu.br</a></p>
+            <p><strong>Horário:</strong> Seg/Qua 19h–22h</p>
+        </aside>
+
+    </main>
+
+    <footer id="contato">
+        <div class="footer-colunas">
+            <div>
+                <h2>Portal UNICEPLAC</h2>
+                <p>Projeto da disciplina de Programação para Web, do curso de Engenharia de Software, integrando HTML, CSS, Bootstrap e JSP.</p>
+            </div>
+
+            <nav aria-label="Links do rodapé">
+                <h2>Navegação</h2>
+                <ul>
+                    <li><a href="#turmas">Turmas</a></li>
+                    <li><a href="#cadastrar">Cadastrar aluno</a></li>
+                    <li><a href="turmas.jsp">Lista de turmas (JSP)</a></li>
+                    <li><a href="portal-bootstrap.html">Versão Bootstrap</a></li>
+                </ul>
+            </nav>
+
+            <address>
+                <h2>Contato</h2>
+                <p>Prof. Reinaldo Vieira</p>
+                <p><a href="mailto:reinaldo@uniceplac.edu.br">reinaldo@uniceplac.edu.br</a></p>
+                <p>Seg/Qua · 19h–22h</p>
+                <p>Brasília — DF</p>
+            </address>
+        </div>
+
+        <div class="footer-base">
+            <p>&copy; 2026 UNICEPLAC — Todos os direitos reservados</p>
+            <p>Desenvolvido na disciplina de Programação para Web</p>
+        </div>
+    </footer>
+
+</body>
+</html>
